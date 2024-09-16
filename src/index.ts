@@ -246,6 +246,9 @@ export type {
   OnPacketCallback,
   OnErrorCallback,
   IStream,
+  IClientOptions,
+  IClientReconnectOptions,
+  PacketCallback,
 
   // mqtt-packet
   QoS,
