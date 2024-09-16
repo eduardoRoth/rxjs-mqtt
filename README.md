@@ -1,11 +1,11 @@
-# @eduardoroth/rxjs-mqtt
+# @eduardorothdev/rxjs-mqtt
 
 RxJS Wrapper for [mqtt](https://www.npmjs.com/package/mqtt) with TS support. Based on [async-mqtt](https://www.npmjs.com/package/async-mqtt)
 
 ## Install
 
 ```
-npm i @eduardoroth/rxjs-mqtt
+npm i @eduardorothdev/rxjs-mqtt
 ```
 
 ## Using it
