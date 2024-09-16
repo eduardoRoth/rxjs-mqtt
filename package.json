@@ -1,0 +1,41 @@
+{
+  "name": "@eduardorothdev/rxjs-mqtt",
+  "version": "1.0.0",
+  "description": "RxJS wrapper for MQTT. Based on async-mqtt",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardoRoth/rxjs-mqtt.git"
+  },
+  "keywords": [
+    "mqtt",
+    "async",
+    "rxjs",
+    "observable",
+    "publish",
+    "subscribe"
+  ],
+  "author": "Eduardo Roth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eduardoRoth/rxjs-mqtt/issues"
+  },
+  "homepage": "https://github.com/eduardoRoth/rxjs-mqtt#readme",
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "mqtt": "^2.6.3",
+    "rxjs": "^7.8.1"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./parsers": "./dist/parsers/index.js",
+    "./types": "./dist/types/index.js"
+  }
+}
