@@ -236,3 +236,35 @@ function receiveMessage(observer: Subscriber<MessagePacket>) {
 }
 
 export { connect, ObsClient as MqttClient };
+
+export type {
+  // mqtt/types/lib/client
+  ISubscriptionGrant,
+  ISubscriptionRequest,
+  ISubscriptionMap,
+  OnMessageCallback,
+  OnPacketCallback,
+  OnErrorCallback,
+  IStream,
+
+  // mqtt-packet
+  QoS,
+  PacketCmd,
+  IPacket,
+  IConnectPacket,
+  IPublishPacket,
+  IConnackPacket,
+  ISubscription,
+  ISubscribePacket,
+  ISubackPacket,
+  IUnsubscribePacket,
+  IUnsubackPacket,
+  IPubackPacket,
+  IPubcompPacket,
+  IPubrelPacket,
+  IPubrecPacket,
+  IPingreqPacket,
+  IPingrespPacket,
+  IDisconnectPacket,
+  Packet,
+} from "mqtt";
