@@ -12,7 +12,7 @@ import {
 } from "mqtt";
 import { Observable, Subscriber } from "rxjs";
 import { MessagePacket } from "@eduardorothdev/rxjs-mqtt/types";
-import { parsePayloadToJSON } from "../dist/parsers";
+import { parsePayloadToType } from "@eduardorothdev/rxjs-mqtt/parsers";
 
 class ObsClient {
   _client: MqttClient;
@@ -136,7 +136,7 @@ class ObsClient {
           },
         };
       },
-    ).pipe(parsePayloadToJSON<T>());
+    ).pipe(parsePayloadToType<T>());
   }
 
   once(event: string) {
