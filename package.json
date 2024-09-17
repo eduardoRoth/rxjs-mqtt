@@ -1,6 +1,6 @@
 {
   "name": "@eduardorothdev/rxjs-mqtt",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "RxJS wrapper for MQTT. Based on async-mqtt",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
