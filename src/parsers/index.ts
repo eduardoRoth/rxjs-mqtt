@@ -16,8 +16,8 @@ function parsePayload<T>(
   );
 }
 
-function parsePayloadToJSON() {
-  return parsePayload<JSON>((buffer) => JSON.parse(buffer.toString()));
+function parsePayloadToJSON<T>() {
+  return parsePayload<T | JSON>((buffer) => JSON.parse(buffer.toString()));
 }
 
 export { parsePayload, parsePayloadToJSON };

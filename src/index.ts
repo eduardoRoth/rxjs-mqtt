@@ -112,27 +112,31 @@ class ObsClient {
   }
 
   on(event: string) {
-    return new Observable<MessagePacket>((observer) => {
-      const onEvent = receiveMessage(observer);
-      this._client.on(event, onEvent);
-      return {
-        unsubscribe: () => {
-          this._client.off(event, onEvent);
-        },
-      };
-    });
+    return new Observable<MessagePacket>(
+      (observer): { unsubscribe: () => void } => {
+        const onEvent = receiveMessage(observer);
+        this._client.on(event, onEvent);
+        return {
+          unsubscribe: () => {
+            this._client.off(event, onEvent);
+          },
+        };
+      },
+    );
   }
 
   onJsonMessage<T>() {
-    return new Observable<MessagePacket>((observer) => {
-      const onEvent = receiveMessage(observer);
-      this._client.on("message", onEvent);
-      return {
-        unsubscribe: () => {
-          this._client.off("message", onEvent);
-        },
-      };
-    }).pipe(parsePayloadToJSON());
+    return new Observable<MessagePacket>(
+      (observer: Subscriber<MessagePacket>): { unsubscribe: () => void } => {
+        const onEvent = receiveMessage(observer);
+        this._client.on("message", onEvent);
+        return {
+          unsubscribe: () => {
+            this._client.off("message", onEvent);
+          },
+        };
+      },
+    ).pipe(parsePayloadToJSON<T>());
   }
 
   once(event: string) {
