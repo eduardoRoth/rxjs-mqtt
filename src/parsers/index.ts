@@ -1,29 +1,43 @@
-import { map, OperatorFunction, pipe } from "rxjs";
+import { map, OperatorFunction, pipe, tap } from "rxjs";
 import { MessagePacket } from "@eduardorothdev/rxjs-mqtt/types";
 
-export type typedMessage<T> = Omit<MessagePacket, "payload"> & {
-  payload: T | string;
+export type TypedMessage<T> = Omit<MessagePacket, "payload"> & {
+  payload: T;
 };
 
 function parsePayload<T>(
-  parser: (buffer: Buffer) => T | string = (buffer: Buffer) =>
-    buffer.toString(),
-): OperatorFunction<MessagePacket, typedMessage<T>> {
+  parser: (buffer: Buffer) => T,
+): OperatorFunction<MessagePacket, TypedMessage<T>> {
   return pipe(
-    map(
-      (v): typedMessage<T> => ({
-        ...v,
-        payload: parser(v.payload),
-      }),
-    ),
+    map((v) => ({
+      ...v,
+      payload: parser(v.payload),
+    })),
   );
 }
 
-function parsePayloadToJSON<T>(): OperatorFunction<
+function parsePayloadToString(): OperatorFunction<
   MessagePacket,
-  typedMessage<T>
+  TypedMessage<string>
 > {
-  return parsePayload<T>((buffer) => JSON.parse(buffer.toString()));
+  return pipe(
+    map((v) => ({
+      ...v,
+      payload: v.payload.toString(),
+    })),
+  );
 }
 
-export { parsePayload, parsePayloadToJSON };
+function parsePayloadToType<T>(): OperatorFunction<
+  MessagePacket,
+  TypedMessage<T>
+> {
+  return pipe(
+    map((v) => ({
+      ...v,
+      payload: JSON.parse(v.payload.toString()),
+    })),
+  );
+}
+
+export { parsePayload, parsePayloadToString, parsePayloadToType };
