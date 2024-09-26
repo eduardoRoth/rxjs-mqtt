@@ -35,7 +35,7 @@ function parsePayloadToType<T>(): OperatorFunction<
   return pipe(
     map((v) => ({
       ...v,
-      payload: JSON.parse(v.payload.toString()),
+      payload: JSON.parse(JSON.stringify(v.payload.toString())),
     })),
   );
 }
