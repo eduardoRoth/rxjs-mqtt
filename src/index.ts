@@ -46,6 +46,15 @@ class ObsClient {
     });
   }
 
+  publishJson(topic: string, data: JSON) {
+    return new Promise((resolve, reject) => {
+      this._client.publish(topic, JSON.stringify(data), (err, result) => {
+        if (err) reject(err);
+        else resolve(result);
+      });
+    });
+  }
+
   subscribe(...args: [string | string[] | ISubscriptionMap]) {
     return new Promise((resolve, reject) => {
       this._client.subscribe(...args, (err, result) => {
