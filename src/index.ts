@@ -46,7 +46,7 @@ class ObsClient {
     });
   }
 
-  publishJson(topic: string, data: JSON) {
+  publishJson(topic: string, data: { [key: string]: unknown }) {
     return new Promise((resolve, reject) => {
       this._client.publish(topic, JSON.stringify(data), (err, result) => {
         if (err) reject(err);
